@@ -16,7 +16,7 @@ public class PositiveTests extends ParameterizedTestsRunner {
   @IfProfileValue(name = "spring.profiles.active", value = "local")
   @Test
   public void t1_saleAndVoid() {
-
+    int i = 3;
 
 
   }
