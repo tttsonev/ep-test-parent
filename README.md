@@ -6,7 +6,7 @@ The project is maven based, so you need to install java 8 and maven on your mach
 
 All runnable test classes are following the convention *Tests.java 
  <br/>
-Tests are stored in folder [api-test](https://github.com/tttsonev/ep-test-parent/tree/master/api-test/src/test/java/healthchecktest)
+Tests are stored in folder [healthchecktest](https://github.com/tttsonev/ep-test-parent/tree/master/api-test/src/test/java/healthchecktest)
  <br/>
 
 
