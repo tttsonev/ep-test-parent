@@ -1,29 +1,28 @@
 package com.ep.api.tests.models;
-import java.util.Map;
 
 public class JSONs {
 
-  public static String paymentTransactionJson(Map<String, String> paymentTransactionProperties) {
+  public static String paymentTransactionJson(TransactionImpl transaction) {
     return "{\n" +
             "    \"payment_transaction\": {\n" +
-            "      \"card_number\": \"4200000000000000\",\n" +
-            "      \"cvv\": \"123\",\n" +
-            "      \"expiration_date\": \"06/2019\",\n" +
-            "      \"amount\": \"500\",\n" +
-            "      \"usage\": \"Coffeemaker\",\n" +
-            "      \"transaction_type\": \"sale\",\n" +
-            "      \"card_holder\": \"Panda Panda\",\n" +
-            "      \"email\": \"panda@example.com\",\n" +
-            "      \"address\": \"Panda Street, China\"\n" +
+            "      \"card_number\": \""+transaction.getCard_number()+"\",\n" +
+            "      \"cvv\": \""+transaction.getCvv()+"\",\n" +
+            "      \"expiration_date\": \""+transaction.getExpiration_date()+"\",\n" +
+            "      \"amount\": \""+transaction.getAmount()+"\",\n" +
+            "      \"usage\": \""+transaction.getUsage()+"\",\n" +
+            "      \"transaction_type\": \""+transaction.getTransaction_type()+"\",\n" +
+            "      \"card_holder\": \""+transaction.getCard_holder()+"\",\n" +
+            "      \"email\": \""+transaction.getEmail()+"\",\n" +
+            "      \"address\": \""+transaction.getAddress()+"\"\n" +
             "    }\n" +
             "}";
   }
 
-  public static String paymentTransactionRallbackJson(Map<String, String> paymentTransactionProperties) {
+  public static String paymentTransactionRallbackJson(TransactionImpl transaction) {
     return "{\n" +
             "    \"payment_transaction\": {\n" +
-            "      \"reference_id\": \"0e08644635ccb520c2eeb54f33865660\",\n" +
-            "      \"transaction_type\": \"void\"\n" +
+            "      \"reference_id\": \""+transaction.getReference_id()+"\",\n" +
+            "      \"transaction_type\": \""+transaction.getTransaction_type()+"\"\n" +
             "    }\n" +
             "}";
   }
