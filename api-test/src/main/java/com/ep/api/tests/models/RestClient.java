@@ -92,8 +92,15 @@ public class RestClient {
     return headers;
   }
 
+    public String getUrl() {
+        return url;
+    }
 
-  protected RestTemplate getRest() {
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    protected RestTemplate getRest() {
     return rest;
   }
 

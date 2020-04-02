@@ -1,13 +1,11 @@
 package com.ep.api.tests;
 
 import java.nio.charset.Charset;
-import java.util.Map;
 
-import com.ep.api.tests.intefaces.SaleTransactions;
-import com.ep.api.tests.intefaces.VoidTransactions;
+import com.ep.api.tests.intefaces.Helpers;
 import com.ep.api.tests.models.RestClient;
-import org.json.JSONObject;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
@@ -31,19 +29,19 @@ import org.springframework.web.client.RestTemplate;
 @EnableConfigurationProperties
 
 
-public abstract class BaseTest implements SaleTransactions, VoidTransactions {
+public abstract class BaseTest implements Helpers {
 
 
 
   public static RestClient epRestClient;
 
   @Value("${url}")
-  protected String url;
+  public String url;
   @Value("${user}")
-  protected String user;
-  @Value("${user}")
-  protected String password;
+  public String user;
   @Value("${password}")
+  protected String password;
+
 
   private final static Logger log = org.slf4j.LoggerFactory.getLogger(BaseTest.class);
 
@@ -52,10 +50,11 @@ public abstract class BaseTest implements SaleTransactions, VoidTransactions {
 
   @Before
   public void setUp() {
-    final RestTemplate epRestTemplate = new RestTemplate();
+    RestTemplate epRestTemplate = new RestTemplate();
     epRestClient = new RestClient(epRestTemplate, url);
     epRestTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
     epRestTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(user, password));
+
   }
 
   @After
@@ -64,15 +63,23 @@ public abstract class BaseTest implements SaleTransactions, VoidTransactions {
   }
 
   @Override
-  public JSONObject makeSaleTransaction(Map<String, String> properties){
-    return null;
+  public void verifyStatusCode(long expectedStatus){
+      Assert.assertEquals(expectedStatus, epRestClient.getStatusCode());
   }
 
   @Override
-   public JSONObject makeVoidTransaction(Map<String, String> properties){
-    return null;
-  }
+  public void logout(){
+        RestTemplate epRestTemplate = new RestTemplate();
+        epRestClient = new RestClient(epRestTemplate, url);
+        epRestTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+        epRestTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(null, null));
+    }
 
-
-
+    @Override
+    public void login(){
+        RestTemplate epRestTemplate = new RestTemplate();
+        epRestClient = new RestClient(epRestTemplate, url);
+        epRestTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+        epRestTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(user, password));
+    }
 }
