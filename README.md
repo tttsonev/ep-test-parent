@@ -1,7 +1,7 @@
 
 Clone the project to your machine : git clone 
  <br/>
-The project is maven based, so you need to install java 8 and maven on your machine. This is the   [How To document for Ubuntu]()
+The project is maven based, so you need to install java 8 and maven on your machine. This is the   [How To document for Ubuntu](https://linuxize.com/post/how-to-install-apache-maven-on-ubuntu-18-04/)
  <br/>
 
 All runnable test classes are following the convention *Tests.java 
