@@ -17,7 +17,7 @@ public class PositiveTests extends ParameterizedTestsRunner {
   private final static Logger log = org.slf4j.LoggerFactory.getLogger(PositiveTests.class);
 
 
-//  @IfProfileValue(name = "spring.profiles.active", value = "local")
+  @IfProfileValue(name = "spring.profiles.active", value = "local")
   @Test
   public void t1_saleAndVoid() {
       //create sale transaction
